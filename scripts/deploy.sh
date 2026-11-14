@@ -9,6 +9,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 PROJECT="liplip"
+# Cloudflare gave the project a suffixed pages.dev name: liplip.pages.dev
+# belongs to someone else's project.
+PAGES_HOST="liplip-d4c.pages.dev"
 OUT_DIR="out"
 HOSTS=(www.liplip.org liplip.org)
 WRANGLER=(npx --yes wrangler@4.156.0)
@@ -27,9 +30,9 @@ npm run build
   --commit-hash "$(git rev-parse HEAD)" --commit-message "$(git log -1 --format=%s)"
 
 status=0
-for host in "$PROJECT.pages.dev" "${HOSTS[@]}"; do
+for host in "$PAGES_HOST" "${HOSTS[@]}"; do
   code="$(curl -s -o /dev/null -m 15 -w '%{http_code}' "https://$host/" || true)"
   echo "deploy: https://$host/ -> $code"
-  [ "$host" = "$PROJECT.pages.dev" ] && [ "$code" != 200 ] && status=1
+  [ "$host" = "$PAGES_HOST" ] && [ "$code" != 200 ] && status=1
 done
 exit "$status"

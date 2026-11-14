@@ -32,8 +32,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Hosting
 
 Production is a static export (`output: "export"` in `next.config.ts`) on the
-Cloudflare Pages project `liplip` (https://liplip.pages.dev), serving
-`www.liplip.org` through a CNAME at Hostinger. The bare `liplip.org` points at
+Cloudflare Pages project `liplip` (https://liplip-d4c.pages.dev), serving
+`www.liplip.org` through a CNAME to `liplip-d4c.pages.dev` at Hostinger
+(`liplip.pages.dev` is another account's project). The bare `liplip.org` points at
 the Devya VPS, which answers with a 301 to `https://www.liplip.org`, because
 Pages cannot serve an apex domain whose DNS is outside Cloudflare. The site left
 Vercel after the account pause of 2026-11-13.
